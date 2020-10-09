@@ -1,9 +1,7 @@
-[
-  {
-    "/old-url-1":{
-      "type": "internal",
-      "from": "/old-url-1",
-      "to": "/new-url-1"
-    }
+{
+  "/old-url-1":{
+    "type": "internal",
+    "from": "/old-url-1",
+    "to": "/new-url-1"
   }
-]
+}
