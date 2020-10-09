@@ -1,27 +1,9 @@
 [
   {
-    "type": "internal",
-    "from": "/old-url-1",
-    "to": "/new-url-1"
-  },{
-    "type": "internal",
-    "from": "/old-url-2",
-    "to": "/new-url-2"
-  },{
-    "type": "internal",
-    "from": "/old-url-3",
-    "to": "/new-url-3"
-  },{
-    "type": "domain",
-    "from": "/old-domain-1",
-    "to": "https://example.com/new-domain-1"
-  },{
-    "type": "domain",
-    "from": "/old-domain-2",
-    "to": "https://example.com/new-domain-2"
-  },{
-    "type": "domain",
-    "from": "/old-domain-3",
-    "to": "https://example.com/new-domain-3"
+    "/old-url-1":{
+      "type": "internal",
+      "from": "/old-url-1",
+      "to": "/new-url-1"
+    }
   }
 ]
