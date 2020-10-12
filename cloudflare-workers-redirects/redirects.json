@@ -1,6 +1,7 @@
 {
   "/old-url-1":{
     "type": "internal",
+    "status": 301,
     "from": "/old-url-1",
     "to": "/new-url-1"
   }
