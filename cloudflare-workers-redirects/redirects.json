@@ -4,5 +4,11 @@
     "status": 301,
     "from": "/old-url-1",
     "to": "/new-url-1"
+  },
+  "/old-domain-1":{
+    "type": "domain",
+    "status": 301,
+    "from": "/old-domain-1",
+    "to": "/new-domain-1"
   }
 }
