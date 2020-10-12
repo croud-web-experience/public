@@ -9,6 +9,6 @@
     "type": "domain",
     "status": 301,
     "from": "/old-domain-1",
-    "to": "/new-domain-1"
+    "to": "https://example.com/new-domain-1"
   }
 }
