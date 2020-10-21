@@ -1,6 +1,7 @@
 var CACHE_NAME = 'test-cache-1';
 var urlsToCache = [
-  '/'
+  '/',
+  '/test-1'
 ];
 
 self.addEventListener('install', function(event) {
