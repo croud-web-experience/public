@@ -1,15 +1,16 @@
 # 👷 Cloudflare worker for redirects
 
-Made and deployed using Wrangler
+* [`/src/index.js`](https://github.com/cloudflare/worker-template/blob/master/index.js) is the entrypoint.
 
-[`index.js`](https://github.com/cloudflare/worker-template/blob/master/index.js) is the content of the Workers script.
+* [`redirects.json`](https://raw.githubusercontent.com/croud-web-experience/public/master/cloudflare-workers-redirects-file/redirects.json) is the redirect file
 
-#### Wrangler
+## Technology
+### Language
+Written in JavaScript
 
-To generate using [wrangler](https://github.com/cloudflare/wrangler)
+### Deployment
+Wrangler
 
-```
-wrangler generate projectname https://github.com/cloudflare/worker-template
-```
-
-Further documentation for Wrangler can be found [here](https://developers.cloudflare.com/workers/tooling/wrangler).
+## Documentation
+* Cloudflare Workers: https://developers.cloudflare.com/workers/
+* Cloudflare Workers Examples: https://developers.cloudflare.com/workers/examples
