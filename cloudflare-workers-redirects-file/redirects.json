@@ -1,5 +1,4 @@
 {
-  "/old-url-1":{"status": 301,"from": "/old-url-1","to": "/new-url-1"},
   "/old-domain-1":{"status": 301,"from": "/old-domain-1","to": "https://example.com/new-domain-1"},
   "/old-domain-2":{"status": 301,"from": "/old-domain-2","to": "https://example.com/new-domain-2"},
   "/old-domain-3":{"status": 301,"from": "/old-domain-3","to": "https://example.com/new-domain-3"},
