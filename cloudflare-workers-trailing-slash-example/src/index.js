@@ -1,6 +1,5 @@
 /*
-  Using Cloudflare workers to implement a migration, where the redirects are performed by the Cloudflare Worker opposed to being done by the origin server.
-  The external redirect file can be found at: https://raw.githubusercontent.com/croud-web-experience/public/master/cloudflare-workers-redirects-file/redirects.json
+  Using Cloudflare Workers to remove trailing slash on any URL. This PoC will provide a 200-OK status code for requests without a trailing slash.
 */
 
 // First listen to the fetch event, which will be handled by the Worker
@@ -11,33 +10,23 @@ addEventListener('fetch', event => {
 // Handle the inbound request
 const handleRequest = async (request) => {
 
-  // Get the redirects from the (public) GitHub file. As there are two promises, I wrapped them into a single async method
-  const redirectsObj = await(await fetch('https://raw.githubusercontent.com/croud-web-experience/public/master/cloudflare-workers-redirects-file/redirects.json')).json();
-
   // Store the request URL as an URL object
   const url = new URL(request.url);
 
-  // Check if the path is within the redirects object
-  if(redirectsObj.hasOwnProperty(url.pathname)){
+  // Check if last character of the path is trailing slash. QSP/extensions/etc should not be impacted. And statement to include pathname not being exactly '/'.
 
-    // Redirect has been found, store the data in a variable for ease of use in this example
-    const redirDestination = redirectsObj[url.pathname].to;
-      
-    // define the URL. If the string does not start with 'http', add the HTTPS scheme and current domain; we can hard-code the current domain
+  // The exclusion can be taken out of the conditional statement, but I wanted to avoid nesting too much.
 
-    const redirUrl = redirDestination.substring(0,4) === 'http' ? redirDestination :  'https://'  +url.host + redirDestination;
-    // Return the response with the redirecting URL and status
-    return Response.redirect(redirUrl, 301);
+  if((url.pathname.slice(-1)=== '/') && (url.pathname!=='/')){
+    url.pathname = url.pathname.slice(0, -1);
+    return Response.redirect(url, 308);
   }
-
-  /* Disabled for now, as there are no resources
-    // Return a normal response, grabbing the original request
-    return fetch(request);
-  */
+ 
+  // Create a nice response for people to see that something worked.
   return new Response(
     `
-      <h1>Welcome!</h1><p>To view a redirect, please append the URL with <code>/old-domain-{x}</code>. <code>{x}</code> can be any number between 1 and 2,500.</p>
-      <p>Example link: <a href="/old-domain-321">/old-domain-321</a></p>
+      <h1>Trailing slash remover</h1>
+      <p>Your request to ${url.pathname} is now resolved.</p>
     `,
     {
       status:200,

@@ -1,15 +1,19 @@
-# 👷 Cloudflare Worker to apply trailing slash
+# 👷 Cloudflare Worker to remove trailing slash
 
-* [`/src/index.js`](https://github.com/croud-web-experience/public/blob/master/redirects-workers-example/src/index.js) is the entrypoint.
+* [`/src/index.js`](https://github.com/croud-web-experience/public/blob/master/cloudflare-workers-trailing-slash-example/src/index.js) is the entrypoint.
 
 ## Example/testing
-Requests to https://redirects-workers-example.croud-testing.workers.dev/ will expose the Worker.
+Requests to https://workers-trailing-slash-hompepage-example.croud-testing.workers.dev will expose the Worker.
 
 ### Redirects
-Redirects will be triggered when appending the domain with `/old-domain-{x}`; with `{x}` being a number between 1 and 2,500.
+* Requests to URLs with trailing slash will result in 308-Permanent Redirect to the version without trailing slash
+* Requests to URLs without trailing slash will result in 200-OK status code
 
-#### Example request
 
+#### Example requests
+* *200-OK*: https://workers-trailing-slash-hompepage-example.croud-testing.workers.dev/
+* *200-OK*: https://workers-trailing-slash-hompepage-example.croud-testing.workers.dev/hello-world
+* *308-Perm. Redir.*: https://workers-trailing-slash-hompepage-example.croud-testing.workers.dev/foo-bar/
 
 ## Technology
 ### Language
