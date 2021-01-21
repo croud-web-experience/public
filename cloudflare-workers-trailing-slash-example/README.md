@@ -15,7 +15,8 @@ Requests to https://workers-trailing-slash-hompepage-example.croud-testing.worke
 * *200-OK*: https://workers-trailing-slash-hompepage-example.croud-testing.workers.dev/
 * *200-OK*: https://workers-trailing-slash-hompepage-example.croud-testing.workers.dev/hello-world/
 * *308-Perm. Redir.*: https://workers-trailing-slash-hompepage-example.croud-testing.workers.dev/foo-bar
-* *200-OK*: https://workers-trailing-slash-hompepage-example.croud-testing.workers.dev/files/foo-bar
+* *200-OK*: https://workers-trailing-slash-hompepage-example.croud-testing.workers.dev/files/styles.css
+* *200-OK*: https://workers-trailing-slash-hompepage-example.croud-testing.workers.dev/files/image.jpg
 
 ## Technology
 ### Language
