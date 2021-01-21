@@ -1,5 +1,8 @@
 /*
-  Using Cloudflare Workers to remove trailing slash on any URL. This PoC will provide a 200-OK status code for requests without a trailing slash.
+  Using Cloudflare Workers to add trailing slash on any URL that does not have it. This PoC will provide a 200-OK status code for requests with a trailing slash.
+
+  There will be an exclusion folder included, to simulate resources (JS, CSS, image files) being stored in a single folder. Any requests to this folder will be excluded from the rules.
+
 */
 
 // First listen to the fetch event, which will be handled by the Worker
@@ -13,19 +16,20 @@ const handleRequest = async (request) => {
   // Store the request URL as an URL object
   const url = new URL(request.url);
 
-  // Check if last character of the path is trailing slash. QSP/extensions/etc should not be impacted. And statement to include pathname not being exactly '/'.
-
-  // The exclusion can be taken out of the conditional statement, but I wanted to avoid nesting too much.
-
-  if((url.pathname.slice(-1)=== '/') && (url.pathname!=='/')){
-    url.pathname = url.pathname.slice(0, -1);
-    return Response.redirect(url, 308);
+  // The folder exclusion can be added within the conditional statement; but I kept it on its own level for readability and to allow other rules to be added if wanted.
+  if(!url.pathname.includes('/files/')){
+    
+    // Check if last character of the path has a trailing slash. QSP should not be impacted.
+    if((url.pathname.slice(-1)!== '/')){
+      url.pathname += '/';
+      return Response.redirect(url, 308);
+    }
   }
- 
+
   // Create a nice response for people to see that something worked.
   return new Response(
     `
-      <h1>Trailing slash remover</h1>
+      <h1>Trailing slash adder</h1>
       <p>Your request to ${url.pathname} is now resolved.</p>
     `,
     {
